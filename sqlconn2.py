@@ -22,13 +22,19 @@ sql = '''
 insert into emp(empno, ename, sal) values(%s, %s, %s)
 '''
 
-
 # cursor.execute(sql, (9000, '백승빈', 6000))
 conn.commit()
 
-sql = 'select ifnull(max(empno), 0) + 1 from emp'
+sql = 'select ifnull(max(empno), 0) + 1 id from emp'
 cursor.execute(sql)
-rows = cursor.fetchone()
-for row in rows: print(row)
+row = cursor.fetchone()
+print(row)
+
+sql = '''
+insert into emp(empno, ename, sal) values(%s, %s, %s)
+'''
+
+cursor.execute(sql, (row['id'], '백승빈', 6000))
+conn.commit()
 
 conn.close()
