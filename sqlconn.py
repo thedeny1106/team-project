@@ -1,5 +1,6 @@
 #pip install pymysql
 import pymysql
+import pymysql.cursors
 
 conn = pymysql.connect(
     host = 'localhost', 
@@ -36,4 +37,3 @@ rows = cursor.fetchmany(3)
 for row in rows: print(row)
 
 conn.close()
-
